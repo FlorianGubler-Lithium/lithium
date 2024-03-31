@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: traefik-deployment
+  labels:
+    app: traefik
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      serviceAccountName: traefik-account
+      containers:
+        - name: traefik
+          image: traefik:v2.11
+          args:
+            - --api.insecure
+            - --accesslog
+            - --log.level=DEBUG
+            - --providers.kubernetesingress
+            - --providers.kubernetesingress.ingressclass=traefik-internal
+            - --providers.kubernetesingress.allowCrossNamespace=true
+          ports:
+            - name: web
+              containerPort: 80
+            - name: dashboard
+              containerPort: 8080

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-dashboard-service
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 192.168.1.32
+
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: dashboard
+  selector:
+    app: traefik
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-web-service
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 192.168.1.31
+
+spec:
+  type: LoadBalancer
+  ports:
+    - targetPort: web
+      port: 80
+  selector:
+    app: traefik
