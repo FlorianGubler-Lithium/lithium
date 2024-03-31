@@ -2,7 +2,7 @@
 This document covers the entire cluster configuration of the lithium raspberry pi home cluster. 
 
 ## IP Concept
-<b>DNS Range</b>: 192.168.1.101 - 192.168.1.220<br>
+<b>DHCP Range</b>: 192.168.1.101 - 192.168.1.220<br>
 <b>Cluster Range</b>: 192.168.1.20 - 192.168.1.100
 
 ## Raspberry Pi Hosts
