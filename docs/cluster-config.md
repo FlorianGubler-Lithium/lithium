@@ -1,11 +1,11 @@
 # Cluster Configuration
-This document convers the entire cluster configuration of the lithium raspberry pi home cluster. 
+This document covers the entire cluster configuration of the lithium raspberry pi home cluster. 
 
-# IP Concept
+## IP Concept
 <b>DNS Range</b>: 192.168.1.101 - 192.168.1.220<br>
 <b>Cluster Range</b>: 192.168.1.20 - 192.168.1.100
 
-# Raspberry Pi Hosts
+## Raspberry Pi Hosts
 | Hostname    | IP-Address    | Rasp Version      | OS Version |
 | ----------- | ------------- | ----------------- | ---------- |
 | rasp-one    | 192.168.1.20  | 4 Model B - 4GB   | Deb 12.5   |
