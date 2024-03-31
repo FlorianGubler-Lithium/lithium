@@ -3,7 +3,8 @@ This document covers the entire cluster configuration of the lithium raspberry p
 
 ## IP Concept
 <b>DHCP Range</b>: 192.168.1.101 - 192.168.1.220<br>
-<b>Cluster Range</b>: 192.168.1.20 - 192.168.1.100
+<b>Cluster Range</b>: 192.168.1.20 - 192.168.1.30
+<b>MetalLB</b>: 192.168.1.31 - 192.168.1.100
 
 ## Raspberry Pi Hosts
 | Hostname    | IP-Address    | Rasp Version      | OS Version |
