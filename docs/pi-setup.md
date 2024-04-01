@@ -14,7 +14,7 @@ iface eth0 inet static
     address <YOUR IP>
     netmask 255.255.255.0
     gateway 192.168.1.1
-    dns-nameservers 8.8.8.8 8.8.4.4
+    dns-nameservers 1.1.1.1 8.8.8.8
 ```
 3. Reboot or restart networking service
 ```
