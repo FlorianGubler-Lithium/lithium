@@ -5,7 +5,7 @@ Basic Pi Setup See: [Debian Setup Doc](https://raspberrytips.com/install-debian-
 Dont forget to configure a static IP with the IP concept. This can be done as following:
 1. Got to network interface config for ethernet:
 ```
-sudo nano /etc/network/interfaces
+sudo nano /etc/network/interfaces.d/eth0
 ```
 2. Configure static IP
 ```
