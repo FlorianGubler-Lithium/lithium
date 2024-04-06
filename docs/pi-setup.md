@@ -16,11 +16,15 @@ iface eth0 inet static
     gateway 192.168.1.1
     dns-nameservers 1.1.1.1 8.8.8.8
 ```
-3. Reboot or restart networking service
+3. Set hostname
+```
+nano /etc/hostname
+```
+```
+nano /etc/hosts
+```
+4. Reboot server
 ```
 sudo reboot
 ```
-or
-```
-sudo systemctl restart networking
-```
+
