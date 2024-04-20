@@ -1,10 +1,11 @@
-# Cluster Configuration
+# General concepts
 This document covers the entire cluster configuration of the lithium raspberry pi home cluster. 
 
 ## IP Concept
 <b>DHCP Range</b>: 192.168.1.101 - 192.168.1.220<br>
 <b>Cluster Range</b>: 192.168.1.20 - 192.168.1.30<br>
-<b>MetalLB</b>: 192.168.1.31 - 192.168.1.100
+<b>MetalLB</b>: 192.168.1.31 - 192.168.1.100<br><br>
+Network details can br viewed in the [Swisscom Cockpit](internetbox.swisscom.ch)
 
 ## Raspberry Pi Hosts
 | Hostname    | IP-Address    | Rasp Version      | OS Version |
