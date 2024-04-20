@@ -1,4 +1,4 @@
-# Cluster Configuration
+# Concept
 This document covers the entire cluster configuration of the lithium raspberry pi home cluster. 
 
 ## IP Concept
