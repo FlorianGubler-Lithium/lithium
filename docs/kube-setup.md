@@ -69,5 +69,7 @@ scp <USER>@<MASTER-HOST-IP>:/tmp/config <LOCAL-USER-HOME-PATH>\.kube
 
 ## 7. Install the tigera operator (Used for calico)
 ```
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.4/manifests/tigera-operator.yaml
 ```
+
+## 8. Install operators with kustomize
