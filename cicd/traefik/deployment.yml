@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: traefik-deployment
+  name: traefik
   labels:
     app: traefik
 
@@ -15,19 +15,28 @@ spec:
       labels:
         app: traefik
     spec:
-      serviceAccountName: traefik-account
+      serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
           image: traefik:v2.11
           args:
-            - --api.insecure
-            - --accesslog
             - --log.level=DEBUG
-            - --providers.kubernetesingress
-            - --providers.kubernetesingress.ingressclass=traefik-internal
-            - --providers.kubernetesingress.allowCrossNamespace=true
+            - --api
+            - --api.insecure
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
+            - --entrypoints.tcpep.address=:8000
+            - --entrypoints.udpep.address=:9000/udp
+            - --providers.kubernetescrd
+            - --serversTransport.insecureSkipVerify=true
           ports:
             - name: web
               containerPort: 80
-            - name: dashboard
+            - name: websecure
+              containerPort: 443
+            - name: admin
               containerPort: 8080
+            - name: tcpep
+              containerPort: 8000
+            - name: udpep
+              containerPort: 9000
