@@ -66,3 +66,8 @@ Lastly download the file wie ftp / ssh to your working machine. On windows you c
 ```
 scp <USER>@<MASTER-HOST-IP>:/tmp/config <LOCAL-USER-HOME-PATH>\.kube
 ```
+
+## 7. Install the tigera operator (Used for calico)
+```
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27/manifests/tigera-operator.yaml
+```
