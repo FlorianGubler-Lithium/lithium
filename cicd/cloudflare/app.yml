@@ -17,6 +17,7 @@ spec:
           image: florianzh/floriangubler-ch:latest
           ports:
             - containerPort: 8080
+      imagePullPolicy: IfNotPresent
       imagePullSecrets:
         - name: docker-auth
 ---
