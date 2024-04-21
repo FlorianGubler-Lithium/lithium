@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: httpbin
-          image: kennethreitz/httpbin:latest
+          image: busybox:latest
           ports:
             - containerPort: 80
 ---
