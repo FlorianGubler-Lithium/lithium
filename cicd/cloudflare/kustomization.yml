@@ -1,6 +1,7 @@
 resources:
   - namespace.yml
   - cloudflare.yml
-  - app.yml
+  - secret-docker-auth.yml
+  - floriangubler-ch.yml
 
 namespace: cloudflare

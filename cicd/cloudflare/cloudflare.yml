@@ -25,10 +25,17 @@ spec:
             - --metrics
             - 0.0.0.0:2000
             - run
+          env:
+            - name: cloudflare_tunnel_token
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-tunnel-token
+                  key: token
           args:
             - --token
-            - eyJhIjoiZmZiYWVkOGE1OGRmNGEyZTc3NDdjMmE1NmIyZDJlZDYiLCJ0IjoiNWMzNGI4ODgtZGE2Ni00MDk5LTg4NDgtYWZmZmY0ZjE3MjU0IiwicyI6IlptRmhNbUUzWWpjdFpUVTBZaTAwTURFNExXSTVOekl0Tmpkak5qQTJZekZtTW1KaSJ9
+            - "$(cloudflare_tunnel_token)"
           image: cloudflare/cloudflared:latest
+          imagePullPolicy: IfNotPresent
           name: cloudflared
           livenessProbe:
             httpGet:
