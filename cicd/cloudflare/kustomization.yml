@@ -1,5 +1,6 @@
 resources:
   - namespace.yml
   - cloudflare.yml
+  - app.yml
 
 namespace: cloudflare
