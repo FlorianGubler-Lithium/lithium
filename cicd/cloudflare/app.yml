@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: floriangubler-ch
-          image: floriangubler-ch:latest
+          image: florianzh/floriangubler-ch:latest
           ports:
             - containerPort: 8080
 ---
