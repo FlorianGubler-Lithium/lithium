@@ -23,12 +23,14 @@ spec:
             - --log.level=DEBUG
             - --api
             - --api.insecure
+            - --accesslog=true
             - --entrypoints.web.address=:80
             - --entrypoints.websecure.address=:443
             - --entrypoints.tcpep.address=:8000
             - --entrypoints.udpep.address=:9000/udp
             - --providers.kubernetescrd
-            - --serversTransport.insecureSkipVerify=true
+            - #--serversTransport.insecureSkipVerify=true
+            - --providers.kubernetescrd.allowCrossNamespace=true
           ports:
             - name: web
               containerPort: 80

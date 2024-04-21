@@ -1,7 +1,10 @@
 resources:
+  - namespace.yml
   - https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
   - rbac.yml
   - account.yml
   - deployment.yml
   - services.yml
   - ingressclass.yml
+
+namespace: traefik

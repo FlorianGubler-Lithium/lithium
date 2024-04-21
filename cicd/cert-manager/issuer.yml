@@ -4,21 +4,17 @@ metadata:
   name: letsencrypt-cluster-issuer
 spec:
   acme:
-    # You must replace this email address with your own.
-    # Let's Encrypt will use this to contact you about expiring
-    # certificates, and issues related to your account.
     email: gubler.florian@gmx.net
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
+    preferredChain: "ISRG Root X1"
     privateKeySecretRef:
-      # Secret resource that will be used to store the account's private key.
       name: lets-encrypt-issuer-account-key
-    # Add a single challenge solver, HTTP01 using nginx
     solvers:
       - dns01:
           cloudflare:
             email: gubler.florian@gmx.net
-            apiKeySecretRef:
-              name: cloudflare-apikey-secret
+            apiTokenSecretRef:
+              name: cloudflare-dns-token
               key: apikey
         selector:
           dnsZones:
