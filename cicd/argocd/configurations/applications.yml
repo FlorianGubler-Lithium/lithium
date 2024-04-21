@@ -1,14 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guestbook
+  name: lithium-cloudflare
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/FlorianGubler/lithium
+    repoURL: git@github.com:FlorianGubler/lithium
     targetRevision: HEAD
-    path: cicd/cloudflare/cloudflare.yml
+    path: cicd/cloudflare/
   destination:
     server: https://kubernetes.default.svc
     namespace: cloudflare
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
