@@ -2,6 +2,7 @@ resources:
   - namespace.yml
   - cloudflare.yml
   - secret-docker-auth.yml
+  - secret-tunnel-token.yml
   - floriangubler-ch.yml
 
 namespace: cloudflare
