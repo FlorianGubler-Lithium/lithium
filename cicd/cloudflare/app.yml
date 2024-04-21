@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: floriangubler-ch
-          image: florianzh/floriangubler-ch:latest
+          image: docker.io/florianzh/floriangubler-ch:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
