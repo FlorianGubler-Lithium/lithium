@@ -1,0 +1,5 @@
+resources:
+  - namespace.yml
+  - newrelic.yml
+
+namespace: grafana
