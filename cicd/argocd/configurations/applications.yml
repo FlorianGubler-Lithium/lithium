@@ -16,3 +16,22 @@ spec:
     automated:
       prune: true
       selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lithium-floriangubler-ch
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/FlorianGubler/floriangubler.ch.git
+    targetRevision: HEAD
+    path: kube/
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
