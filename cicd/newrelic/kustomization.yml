@@ -1,5 +1,0 @@
-resources:
-  - namespace.yml
-  - newrelic.yml
-
-namespace: newrelic
