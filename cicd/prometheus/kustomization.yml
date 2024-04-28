@@ -1,0 +1,7 @@
+resources:
+  - namespace.yml
+  - https://raw.githubusercontent.com/prometheus-operator/kube-prometheus/main/kustomization.yaml
+  - config.yml
+
+namespace: prometheus
+
