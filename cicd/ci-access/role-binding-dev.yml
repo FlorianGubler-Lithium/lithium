@@ -10,5 +10,4 @@ subjects:
 roleRef:
   kind: ClusterRole
   name: ci-access-role
-  namespace: default
   apiGroup: rbac.authorization.k8s.io
