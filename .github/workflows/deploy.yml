@@ -1,0 +1,31 @@
+name: Deploy into private Kubernetes cluster via self-hosted runner
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Helm
+      uses: azure/setup-helm@v4
+      
+    - name: Configure Kubeconfig
+      uses: azure/k8s-set-context@v4
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+    
+    - name: Extract branch
+      shell: bash
+      run: echo "revision=$( echo ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}} | sed 's/\//-/g')" >> $GITHUB_OUTPUT
+      id: branch
+        
+    - name: Deploy the Helm chart
+      run: | 
+        helm upgrade ${{ github.event.repository.name }} .cicd/helm/ --install
