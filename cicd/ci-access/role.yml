@@ -3,9 +3,6 @@ kind: ClusterRole
 metadata:
   name: ci-access-role
 rules:
-  - apiGroups: [""]  # core resources like pods, services, configmaps, etc.
+  - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["*"]
-  - apiGroups: [""]
-    resources: ["namespaces"]
-    verbs: ["get", "list", "watch"]
