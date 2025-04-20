@@ -4,6 +4,12 @@ metadata:
   name: ci-access-role
   namespace: default
 rules:
-  - apiGroups: ["*"]
-    resources: ["*"]
-    verbs: ["*"]
+- apiGroups: [""]  # Core API group (pods, services, secrets, configmaps, etc.)
+  resources: ["*"]
+  verbs: ["*"]
+- apiGroups: ["apps"]  # For deployments, replicasets, statefulsets, etc.
+  resources: ["*"]
+  verbs: ["*"]
+- apiGroups: ["batch"]  # For jobs and cronjobs
+  resources: ["*"]
+  verbs: ["*"]
