@@ -13,3 +13,6 @@ rules:
 - apiGroups: ["batch"]  # For jobs and cronjobs
   resources: ["*"]
   verbs: ["*"]
+- apiGroups: ["cert-manager.io"]  # For jobs and cronjobs
+  resources: ["*"]
+  verbs: ["*"]
