@@ -26,7 +26,6 @@ spec:
   isCA: false
   dnsNames:
     - "grafana.local.floriangubler.ch"
-    - "*.grafana.local.floriangubler.ch"
   secretName: grafana-certificate
   privateKey:
     algorithm: ECDSA
