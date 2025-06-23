@@ -1,14 +1,45 @@
 name: Deploy into private Kubernetes cluster via self-hosted runner
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: "development"
+        type: choice
+        options:
+          - development
+          - production
+      chart:
+        description: 'Deploy Component'
+        required: true
+        default: "*"
+        type: choice
+        options:
+          - "*"
+          - calico
+          - cert-manager
+          - ci-access
+          - cloudflare
+          - grafana
+          - metallb
+          - persistent-volumes
+          - production
+          - prometheus
+          - sealed-secrets
+          - traefik
 jobs:
-  deploy:
+  setup:
     runs-on: self-hosted
-
+    
+    outputs:
+      chart: ${{ github.event.inputs.chart }}
+      environment: ${{ github.event.inputs.environment }}
+      
     permissions:
       contents: read
       packages: write
-    
+
     steps:
     - uses: actions/checkout@v4
 
@@ -25,7 +56,26 @@ jobs:
       shell: bash
       run: echo "revision=$( echo ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}} | sed 's/\//-/g')" >> $GITHUB_OUTPUT
       id: branch
+  
+  deploy_dev:
+    name: Deploy to Development
+    if: ${{ needs.setup.outputs.environment == 'development' }}
+    needs: setup
+    runs-on: development
+    steps:
         
     - name: Deploy the Helm chart
       run: | 
-        helm upgrade ${{ github.event.repository.name }} .cicd/helm/ --install
+        CHART_NAME=${{ needs.setup.outputs.chart }}
+        ENVIRONMENT=${{ needs.setup.outputs.environment }}
+        if [[ "$CHART_NAME" == "*" ]]; then
+          CHART_PATHS=$(find ./charts -mindepth 1 -maxdepth 1 -type d)
+        else
+          CHART_PATHS="./charts/$CHART_NAME"
+        fi
+
+        for path in $CHART_PATHS; do
+          echo "Deploying $path to $NAMESPACE (dev)"
+          helm upgrade --install $(basename "$path") "$path" \
+            --values "$path/$ENVIRONMENT/values.yaml"
+        done
