@@ -29,53 +29,8 @@ on:
           - sealed-secrets
           - traefik
 jobs:
-  setup:
-    runs-on: self-hosted
-    
-    outputs:
-      chart: ${{ github.event.inputs.chart }}
+  call-deploy:
+    uses: ./.github/workflows/deploy-env.yml
+    with:
       environment: ${{ github.event.inputs.environment }}
-      
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Install Helm
-      uses: azure/setup-helm@v4
-      
-    - name: Configure Kubeconfig
-      uses: azure/k8s-set-context@v4
-      with:
-        method: kubeconfig
-        kubeconfig: ${{ secrets.KUBECONFIG }}
-    
-    - name: Extract branch
-      shell: bash
-      run: echo "revision=$( echo ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}} | sed 's/\//-/g')" >> $GITHUB_OUTPUT
-      id: branch
-  
-  deploy_dev:
-    name: Deploy to Development
-    if: ${{ needs.setup.outputs.environment == 'development' }}
-    needs: setup
-    runs-on: development
-    steps:
-        
-    - name: Deploy the Helm chart
-      run: | 
-        CHART_NAME=${{ needs.setup.outputs.chart }}
-        ENVIRONMENT=${{ needs.setup.outputs.environment }}
-        if [[ "$CHART_NAME" == "*" ]]; then
-          CHART_PATHS=$(find ./charts -mindepth 1 -maxdepth 1 -type d)
-        else
-          CHART_PATHS="./charts/$CHART_NAME"
-        fi
-
-        for path in $CHART_PATHS; do
-          echo "Deploying $path to $NAMESPACE (dev)"
-          helm upgrade --install $(basename "$path") "$path" \
-            --values "$path/$ENVIRONMENT/values.yaml"
-        done
+      chart: ${{ github.event.inputs.chart }}
