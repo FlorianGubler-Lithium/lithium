@@ -33,13 +33,6 @@ jobs:
       shell: bash
       run: echo "revision=$( echo ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}} | sed 's/\//-/g')" >> $GITHUB_OUTPUT
       id: branch
-  
-  deploy_dev:
-    name: Deploy to Development
-    if: ${{ needs.setup.outputs.environment == 'development' }}
-    needs: setup
-    runs-on: development
-    steps:
         
     - name: Deploy the Helm chart
       run: | 
