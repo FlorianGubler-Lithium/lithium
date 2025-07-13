@@ -25,12 +25,20 @@ jobs:
 
     - name: Install Helm
       uses: azure/setup-helm@v4
-      
+
+    - name: Set dynamic kubeconfig secret
+      run: |
+        if [ "${{ github.event.inputs.environment }}" = "development" ]; then
+          echo "KUBECONFIG=${{ secrets.KUBECONFIG_DEV }}" >> $GITHUB_ENV
+        else
+          echo "KUBECONFIG=${{ secrets.KUBECONFIG_PROD }}" >> $GITHUB_ENV
+        fi
+          
     - name: Configure Kubeconfig
       uses: azure/k8s-set-context@v4
       with:
         method: kubeconfig
-        kubeconfig: ${{ secrets.KUBECONFIG }}
+        kubeconfig: ${{ env.KUBECONFIG }}
     
     - name: Extract branch
       shell: bash
