@@ -1,4 +1,4 @@
-name: Deploy into private Kubernetes cluster via self-hosted runner
+name: Deploy to Kubernetes
 on:
   workflow_dispatch:
     inputs:
