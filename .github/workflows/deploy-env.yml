@@ -10,7 +10,7 @@ on:
         type: string
 jobs:
   setup:
-    runs-on: ${{ inputs.environment }}
+    runs-on: [self-hosted, ARM64, development]
     
     outputs:
       chart: ${{ github.event.inputs.chart }}
