@@ -1,6 +1,0 @@
-resources:
-  - namespace.yml
-  - config.yml
-  - ingress-route.yml
-
-namespace: grafana

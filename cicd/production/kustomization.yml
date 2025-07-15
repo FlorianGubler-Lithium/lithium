@@ -1,5 +1,0 @@
-resources:
-  - namespace.yml
-  - secret-docker-auth.yml
-
-namespace: production

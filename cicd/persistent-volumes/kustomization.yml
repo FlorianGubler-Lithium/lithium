@@ -1,5 +1,0 @@
-resources:
-  - pvs.yml
-  - storage-classes.yml
-
-namespace: default

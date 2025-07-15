@@ -1,0 +1,5 @@
+apiVersion: v2
+name: sealed-secrets
+description: A Helm chart to include the Sealed Secret Types
+type: application
+version: 0.1.0

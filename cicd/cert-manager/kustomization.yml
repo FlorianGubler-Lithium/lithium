@@ -1,4 +1,0 @@
-resources:
-  - https://github.com/cert-manager/cert-manager/releases/download/v1.14.4/cert-manager.yaml
-  - issuer.yml
-  - secret-cloudflare-dns-token.yml

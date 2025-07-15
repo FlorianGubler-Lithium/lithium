@@ -1,6 +1,0 @@
-resources:
-  - namespace.yml
-  - cloudflare.yml
-  - secret-tunnel-token.yml
-
-namespace: cloudflare
