@@ -53,14 +53,13 @@ jobs:
         CHART_NAME=${{ github.event.inputs.chart }}
         ENVIRONMENT=${{ github.event.inputs.environment }}
         if [[ "$CHART_NAME" == "*" ]]; then
-          CHART_PATHS=$(find ./charts -mindepth 1 -maxdepth 1 -type d)
+          CHART_PATHS=$(find ./cicd -mindepth 1 -maxdepth 1 -type d)
         else
-          CHART_PATHS="./charts/$CHART_NAME"
+          CHART_PATHS="./cicd/$CHART_NAME"
         fi
 
         for path in $CHART_PATHS; do
           echo "Deploying $path to $ENVIRONMENT"
-          helm upgrade --install $(basename "$path") "$path" \
-            --values "$path/$ENVIRONMENT/values.yaml"
+          helm upgrade --install $(basename "$path") "$path"
         done
       
