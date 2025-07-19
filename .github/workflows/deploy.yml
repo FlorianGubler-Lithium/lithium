@@ -50,8 +50,8 @@ jobs:
         
     - name: Deploy the Helm chart(s)
       run: | 
-        CHART_NAME=${{ needs.setup.outputs.chart }}
-        ENVIRONMENT=${{ needs.setup.outputs.environment }}
+        CHART_NAME=${{ github.event.inputs.chart }}
+        ENVIRONMENT=${{ github.event.inputs.environment }}
         if [[ "$CHART_NAME" == "*" ]]; then
           CHART_PATHS=$(find ./charts -mindepth 1 -maxdepth 1 -type d)
         else
@@ -59,7 +59,7 @@ jobs:
         fi
 
         for path in $CHART_PATHS; do
-          echo "Deploying $path to $NAMESPACE (dev)"
+          echo "Deploying $path to $ENVIRONMENT"
           helm upgrade --install $(basename "$path") "$path" \
             --values "$path/$ENVIRONMENT/values.yaml"
         done
