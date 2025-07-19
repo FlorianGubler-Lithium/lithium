@@ -60,6 +60,22 @@ jobs:
 
         for path in $CHART_PATHS; do
           echo "Deploying $path to $ENVIRONMENT"
-          helm upgrade --install $(basename "$path") "$path"
+        
+          # Initialize the values file argument as empty
+          helm_args=""
+
+          # Direct values.yaml file exists in chart root
+          if [ -f "$path/values.yaml" ]; then
+            helm_args="--values $path/values.yaml"
+          # Environment-specific values file exists in subfolder
+          elif [ -f "$path/values/$ENVIRONMENT.yaml" ]; then
+            helm_args="--values $path/values/$ENVIRONMENT.yaml"
+          fi
+        
+          helm upgrade --install \
+            --set revision=${{ steps.branch.outputs.revision }} \
+            --wait \
+            "$(basename "$path")" \
+            "$path" \
+            $helm_args
         done
-      
