@@ -30,7 +30,8 @@ on:
           - traefik
 jobs:
   call-deploy:
-    uses: ./.github/workflows/deploy-env.yml
-    with:
-      environment: ${{ github.event.inputs.environment }}
-      chart: ${{ github.event.inputs.chart }}
+    runs-on: 
+      group: lithium-development
+    steps:
+      - uses: actions/checkout@v4
+      
