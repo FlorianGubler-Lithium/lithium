@@ -31,7 +31,7 @@ on:
 jobs:
   call-deploy:
     runs-on: 
-      group: lithium-{{ github.event.inputs.environment }}
+      group: ${{ format('lithium-{0}', github.event.inputs.environment) }}
       
     permissions:
       contents: read
