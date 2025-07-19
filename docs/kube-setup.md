@@ -67,9 +67,15 @@ Lastly download the file wie ftp / ssh to your working machine. On windows you c
 scp <USER>@<MASTER-HOST-IP>:/tmp/config <LOCAL-USER-HOME-PATH>\.kube
 ```
 
-## 7. Install the tigera operator (Used for calico)
+## 7. Install Calico Network Manager
+Install Tigera Operator
 ```
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.4/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/tigera-operator.yaml
+```
+Install Calico Resources
+```
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/custom-resources.yaml
 ```
 
-## 8. Install operators with kustomize
+## 8. Install operators with helm using Github Actions
+See Github Actions -> Deploy
