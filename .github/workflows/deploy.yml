@@ -42,12 +42,6 @@ jobs:
 
     - name: Install Helm
       uses: azure/setup-helm@v4
-          
-    - name: Configure Kubeconfig
-      uses: azure/k8s-set-context@v4
-      with:
-        method: kubeconfig
-        kubeconfig: ${{ env.KUBECONFIG }}
     
     - name: Extract branch
       shell: bash
